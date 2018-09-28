@@ -103,6 +103,21 @@ void create_rc_account( database& db, uint32_t now, const account_object& accoun
          return;
    }
 
+   if( max_rc_creation_adjustment.symbol == STEEM_SYMBOL )
+   {
+      const dynamic_global_property_object& gpo = db.get_dynamic_global_properties();
+      max_rc_creation_adjustment = max_rc_creation_adjustment * gpo.get_vesting_share_price();
+   }
+   else if( max_rc_creation_adjustment.symbol == VESTS_SYMBOL )
+   {
+      wlog( "Encountered max_rc_creation_adjustment.symbol == VESTS_SYMBOL creating account ${acct}", ("acct", account.name) );
+   }
+   else
+   {
+      elog( "Encountered unknown max_rc_creation_adjustment creating account ${acct}", ("acct", account.name) );
+      max_rc_creation_adjustment = asset( 0, VESTS_SYMBOL );
+   }
+
    db.create< rc_account_object >( [&]( rc_account_object& rca )
    {
       rca.account = account.name;
@@ -222,17 +237,35 @@ void use_account_rcs(
 
    db.modify( rc_account, [&]( rc_account_object& rca )
    {
-      rca.rc_manabar.regenerate_mana( mbparams, gpo.time.sec_since_epoch() );
+      rca.rc_manabar.regenerate_mana< true >( mbparams, gpo.time.sec_since_epoch() );
 
       bool has_mana = rc_account.rc_manabar.has_mana( rc );
 
-      if( (!skip.skip_reject_not_enough_rc) && db.has_hardfork( STEEM_HARDFORK_0_20 ) && db.is_producing() )
+      if( (!skip.skip_reject_not_enough_rc) && db.has_hardfork( STEEM_HARDFORK_0_20 ) )
       {
-         STEEM_ASSERT( has_mana, plugin_exception,
-            "Account: ${account} needs ${rc_needed} RC. Please wait to transact, or power up STEEM.",
-            ("account", account_name)
-            ("rc_needed", rc)
-            );
+         if( db.is_producing() )
+         {
+            STEEM_ASSERT( has_mana, plugin_exception,
+               "Account: ${account} has ${rc_current} RC, needs ${rc_needed} RC. Please wait to transact, or power up STEEM.",
+               ("account", account_name)
+               ("rc_needed", rc)
+               ("rc_current", rca.rc_manabar.current_mana)
+               );
+         }
+         else
+         {
+            if( !has_mana )
+            {
+               const dynamic_global_property_object& gpo = db.get_dynamic_global_properties();
+               ilog( "Accepting transaction by ${account}, has ${rc_current} RC, needs ${rc_needed} RC, block ${b}, witness ${w}.",
+                  ("account", account_name)
+                  ("rc_needed", rc)
+                  ("rc_current", rca.rc_manabar.current_mana)
+                  ("b", gpo.head_block_number)
+                  ("w", gpo.current_witness)
+                  );
+            }
+         }
       }
 
       if( (!has_mana) && ( skip.skip_negative_rc_balance || !db.has_hardfork( STEEM_HARDFORK_0_20 ) ) )
@@ -533,7 +566,7 @@ struct pre_apply_operation_visitor
 
       _db.modify( rc_account, [&]( rc_account_object& rca )
       {
-         rca.rc_manabar.regenerate_mana( mbparams, _current_time );
+         rca.rc_manabar.regenerate_mana< true >( mbparams, _current_time );
       } );
    }
 
@@ -855,15 +888,20 @@ void rc_plugin_impl::on_pre_apply_operation( const operation_notification& note 
    note.op.visit( vtor );
 }
 
-void update_last_vesting( database& db, const std::vector< account_name_type >& regen_accounts )
+void update_modified_accounts( database& db, const std::vector< account_name_type >& regen_accounts )
 {
    for( const account_name_type& name : regen_accounts )
    {
       const account_object& account = db.get< account_object, by_name >( name );
       const rc_account_object& rc_account = db.get< rc_account_object, by_name >( name );
+
+      int64_t new_last_max_rc = get_maximum_rc( account, rc_account );
+      int64_t drc = new_last_max_rc - rc_account.last_max_rc;
+
       db.modify( rc_account, [&]( rc_account_object& rca )
       {
-         rca.last_max_rc = get_maximum_rc( account, rca );
+         rca.last_max_rc = new_last_max_rc;
+         rca.rc_manabar.current_mana += std::max( drc, int64_t( 0 ) );
       } );
    }
 }
@@ -882,7 +920,7 @@ void rc_plugin_impl::on_post_apply_operation( const operation_notification& note
    post_apply_operation_visitor vtor( modified_accounts, _db, now, gpo.head_block_number, gpo.current_witness );
    note.op.visit( vtor );
 
-   update_last_vesting( _db, modified_accounts );
+   update_modified_accounts( _db, modified_accounts );
 }
 
 void rc_plugin_impl::validate_database()
