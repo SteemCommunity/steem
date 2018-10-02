@@ -121,10 +121,11 @@ void create_rc_account( database& db, uint32_t now, const account_object& accoun
    db.create< rc_account_object >( [&]( rc_account_object& rca )
    {
       rca.account = account.name;
-      rca.rc_manabar.current_mana = get_maximum_rc( account, rca );
       rca.rc_manabar.last_update_time = now;
       rca.max_rc_creation_adjustment = max_rc_creation_adjustment;
-      rca.last_max_rc = get_maximum_rc( account, rca );
+      int64_t max_rc = get_maximum_rc( account, rca );
+      rca.rc_manabar.current_mana = max_rc;
+      rca.last_max_rc = max_rc;
    } );
 }
 
@@ -268,7 +269,7 @@ void use_account_rcs(
          }
       }
 
-      if( (!has_mana) && ( skip.skip_negative_rc_balance || !db.has_hardfork( STEEM_HARDFORK_0_20 ) ) )
+      if( (!has_mana) && ( skip.skip_negative_rc_balance || (gpo.time.sec_since_epoch() <= 1538211600) ) )
          return;
 
       if( skip.skip_deduct_rc )
