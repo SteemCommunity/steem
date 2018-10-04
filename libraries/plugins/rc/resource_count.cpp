@@ -236,14 +236,28 @@ struct count_operation_visitor
       execution_time_count += _e.custom_operation_exec_time;
    }
 
-   void operator()( const custom_json_operation& )const
+   void operator()( const custom_json_operation& o )const
    {
-      execution_time_count += _e.custom_json_operation_exec_time;
+      auto exec_time = _e.custom_operation_exec_time;
+
+      if( o.id == "follow" )
+      {
+         exec_time *= EXEC_FOLLOW_CUSTOM_OP_SCALE;
+      }
+
+      execution_time_count += exec_time;
    }
 
-   void operator()( const custom_binary_operation& )const
+   void operator()( const custom_binary_operation& o )const
    {
-      execution_time_count += _e.custom_binary_operation_exec_time;
+      auto exec_time = _e.custom_operation_exec_time;
+
+      if( o.id == "follow" )
+      {
+         exec_time *= EXEC_FOLLOW_CUSTOM_OP_SCALE;
+      }
+
+      execution_time_count += exec_time;
    }
 
    void operator()( const delete_comment_operation& )const
@@ -395,6 +409,8 @@ void count_resources(
         size_info.transaction_object_base_size
       + size_info.transaction_object_byte_size * tx_size
       + vtor.state_bytes_count;
+
+   result.resource_count[ resource_execution_time ] += vtor.execution_time_count;
 }
 
 } } } // steem::plugins::rc
