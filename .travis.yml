@@ -1,8 +1,8 @@
 sudo: required
 
 language: cpp
-compiler:
-- gcc
+#compiler:
+# - gcc
 # - clang
 
 env:
@@ -18,9 +18,9 @@ addons:
       - autoconf
       - automake
       - cmake
-      - gcc-4.9
-      - g++-4.9
-      - cpp-4.9
+      - gcc-5
+      - g++-5
+      - cpp-5
       - git
       - libbz2-dev
       - libsnappy-dev
