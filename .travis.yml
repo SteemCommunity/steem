@@ -10,4 +10,8 @@ install: sudo apt-get install make autoconf automake cmake g++ git libbz2-dev li
 
 script:
 - sh ciscripts/installboost.sh
-- sh ciscripts/installboost.sh
+- sh ciscripts/compiletest.sh
+
+cache:
+  directories:
+  - $HOME/opt/boost_1_60_0
