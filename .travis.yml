@@ -47,6 +47,7 @@ jobs:
     script: ls -al build/*
 
 cache:
+  apt: true
   directories:
   - $HOME/opt/boost_1_60_0
   - boost_1_60_0

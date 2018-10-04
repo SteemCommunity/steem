@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
 
 export BOOST_ROOT=$HOME/opt/boost_1_60_0
-if find "$BOOST_ROOT" -mindepth 1 | read; then
+if [ -d "${BOOST_ROOT}/lib" ]; then
     echo "boost cached!"
+    cd boost_1_60_0
+    ./bootstrap.sh "--prefix=$BOOST_ROOT"
+    ./b2 install
+    echo "installing boost done!"
 else
     echo "boost not cached!"
-    ls -al $BOOST_ROOT
     URL='http://sourceforge.net/projects/boost/files/boost/1.60.0/boost_1_60_0.tar.bz2/download'
     wget -nv -c "$URL" -O boost_1_60_0.tar.bz2
     echo "extracting boost, can take a while..."
@@ -18,6 +21,5 @@ else
     echo "installing boost, can take a while..."
     ./b2 install | pv -l | wc -l
     echo "installing boost done!"
-    ls -al $BOOST_ROOT
     echo "boost compilation finished!"
 fi
