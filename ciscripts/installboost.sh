@@ -12,10 +12,10 @@ else
     echo "extracting boost done!"
     cd boost_1_60_0
     echo "compiling boost, can take a while..."
-    ./bootstrap.sh "--prefix=$BOOST_ROOT"
+    ./bootstrap.sh "--prefix=$BOOST_ROOT" > /dev/null
     echo "extracting boost done!"
     echo "installing boost, can take a while..."
-    ./b2 install
+    ./b2 install > /dev/null
     echo "installing boost done!"
 
     echo "boost compilation finished!"
