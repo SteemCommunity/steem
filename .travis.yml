@@ -16,7 +16,7 @@ addons:
       - autoconf
       - automake
       - cmake
-      - g++
+      - g++-4.9
       - git
       - libbz2-dev
       - libsnappy-dev

@@ -14,11 +14,11 @@ else
     tar xjf boost_1_60_0.tar.bz2
     echo "extracting boost done!"
     cd boost_1_60_0
-    echo "compiling boost, can take a while..."
-    ./bootstrap.sh "--prefix=$BOOST_ROOT" | pv -l | wc -l
-    echo "extracting boost done!"
+    echo "configuring boost, can take a while..."
+    ./bootstrap.sh "--prefix=$BOOST_ROOT"
+    echo "configuring boost done!"
     echo "installing boost, can take a while..."
-    ./b2 install | pv -l | wc -l
+    ./b2 install | pv -l -i 10 -s 14209 -n | wc -l
     echo "installing boost done!"
     echo "boost compilation finished!"
 fi
