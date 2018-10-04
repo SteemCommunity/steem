@@ -1,18 +1,13 @@
 dist: xenial
 
 language: cpp
-#compiler:
-# - gcc
-# - clang
+compiler:
+ - gcc
+ - clang
 
-env:
-  global:
-  - BOOST_ROOT=$HOME/opt/boost_1_60_0
 
 addons:
   apt:
-    sources:
-    - ubuntu-toolchain-r-test
     packages:
     - autoconf
     - automake
@@ -42,15 +37,10 @@ addons:
     - libboost-thread-dev
     - lcov
 
-#script:
-#- sh ciscripts/installboost.sh
-#- sh ciscripts/compiletest.sh
-
 jobs:
   include:
   - stage: prepare cache
     script:
-#      - sh ciscripts/installboost.sh
       - sh ciscripts/compiletest.sh
   - stage: test
     script: ls -al .
@@ -62,8 +52,5 @@ jobs:
     script: sh ciscripts/collectcoverage.sh
 
 cache:
-  apt: true
   directories:
-#  - $BOOST_ROOT
-#  - boost_1_60_0
   - build
