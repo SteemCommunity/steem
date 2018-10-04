@@ -5,6 +5,8 @@ compiler:
 - gcc
 # - clang
 
+env:
+- BOOST_ROOT=$HOME/opt/boost_1_60_0
 
 addons:
   apt:
@@ -49,6 +51,6 @@ jobs:
 cache:
   apt: true
   directories:
-  - $HOME/opt/boost_1_60_0
+  - $BOOST_ROOT
   - boost_1_60_0
   - build

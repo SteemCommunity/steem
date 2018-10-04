@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-export BOOST_ROOT=$HOME/opt/boost_1_60_0
 if [ -d "${BOOST_ROOT}/lib" ]; then
     echo "boost cached!"
     cd boost_1_60_0
