@@ -7,6 +7,9 @@ language: cpp
 
 env:
 - BOOST_ROOT=$HOME/opt/boost_1_60_0
+- CXX=g++-5
+- CC=gcc-5
+
 
 addons:
   apt:
