@@ -36,6 +36,10 @@ addons:
     - libboost-thread-dev
     - lcov
 
+before_install:
+  - gem install mtime_cache
+  - mtime_cache src/**/*.{%{cpp}} -c .mtime_cache/cache.json
+
 jobs:
   include:
   - stage: prepare cache
@@ -53,3 +57,4 @@ jobs:
 cache:
   directories:
   - build
+  - .mtime_cache
