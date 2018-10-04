@@ -8,9 +8,6 @@ language: cpp
 env:
   global:
   - BOOST_ROOT=$HOME/opt/boost_1_60_0
-  - CXX=g++-5
-  - CC=gcc-5
-
 
 addons:
   apt:
@@ -38,6 +35,7 @@ addons:
       - libncurses5-dev
       - libreadline-dev
       - perl
+      - lcov
 
 script:
 - sh ciscripts/installboost.sh
@@ -55,6 +53,8 @@ jobs:
     script: ls -al build
   - stage: test
     script: ls -al build/*
+  - stage: coverage
+    script: sh ciscripts/collectcoverage.sh
 
 cache:
   apt: true

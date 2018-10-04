@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+export CXX=g++-5
+export CC=gcc-5
+
 if [ -d "${BOOST_ROOT}/lib" ]; then
     echo "boost cached!"
     cd boost_1_60_0
@@ -18,7 +21,7 @@ else
     ./bootstrap.sh "--prefix=$BOOST_ROOT"
     echo "configuring boost done!"
     echo "installing boost, can take a while..."
-    ./b2 install | pv -l -i 10 -s 14209 -n | wc -l
+    ./b2 install | pv -l -i 10 -s 14209 -f | wc -l
     echo "installing boost done!"
     echo "boost compilation finished!"
 fi

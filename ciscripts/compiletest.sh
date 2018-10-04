@@ -1,4 +1,7 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
+
+export CXX=g++-5
+export CC=gcc-5
 
 dpkg -l | grep gcc | awk '{print $2}'
 update-alternatives --set gcc "/usr/bin/gcc-5"
