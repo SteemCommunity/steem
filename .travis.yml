@@ -1,4 +1,4 @@
-sudo: required
+dist: xenial
 
 language: cpp
 #compiler:
@@ -14,38 +14,43 @@ addons:
     sources:
     - ubuntu-toolchain-r-test
     packages:
-      - pv
-      - make
-      - autoconf
-      - automake
-      - cmake
-      - gcc-5
-      - g++-5
-      - cpp-5
-      - git
-      - libbz2-dev
-      - libsnappy-dev
-      - libssl-dev
-      - libtool
-      - make
-      - pkg-config
-      - python3
-      - python3-jinja2
-      - doxygen
-      - libncurses5-dev
-      - libreadline-dev
-      - perl
-      - lcov
+    - autoconf
+    - automake
+    - cmake
+    - g++
+    - git
+    - libbz2-dev
+    - libsnappy-dev
+    - libssl-dev
+    - libtool
+    - make
+    - pkg-config
+    - python3
+    - python3-jinja2
+    - libboost-chrono-dev
+    - libboost-context-dev
+    - libboost-coroutine-dev
+    - libboost-date-time-dev
+    - libboost-filesystem-dev
+    - libboost-iostreams-dev
+    - libboost-locale-dev
+    - libboost-program-options-dev
+    - libboost-serialization-dev
+    - libboost-signals-dev
+    - libboost-system-dev
+    - libboost-test-dev
+    - libboost-thread-dev
+    - lcov
 
-script:
-- sh ciscripts/installboost.sh
-- sh ciscripts/compiletest.sh
+#script:
+#- sh ciscripts/installboost.sh
+#- sh ciscripts/compiletest.sh
 
 jobs:
   include:
   - stage: prepare cache
     script:
-      - sh ciscripts/installboost.sh
+#      - sh ciscripts/installboost.sh
       - sh ciscripts/compiletest.sh
   - stage: test
     script: ls -al .
@@ -59,6 +64,6 @@ jobs:
 cache:
   apt: true
   directories:
-  - $BOOST_ROOT
-  - boost_1_60_0
+#  - $BOOST_ROOT
+#  - boost_1_60_0
   - build
