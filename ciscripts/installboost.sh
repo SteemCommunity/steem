@@ -5,6 +5,7 @@ if find "$BOOST_ROOT" -mindepth 1 | read; then
     echo "boost cached!"
 else
     echo "boost not cached!"
+    ls -al $BOOST_ROOT
     URL='http://sourceforge.net/projects/boost/files/boost/1.60.0/boost_1_60_0.tar.bz2/download'
     wget -nv -c "$URL" -O boost_1_60_0.tar.bz2
     echo "extracting boost, can take a while..."
@@ -12,11 +13,11 @@ else
     echo "extracting boost done!"
     cd boost_1_60_0
     echo "compiling boost, can take a while..."
-    ./bootstrap.sh "--prefix=$BOOST_ROOT" #| pv -l | wc -l
+    ./bootstrap.sh "--prefix=$BOOST_ROOT" | pv -l | wc -l
     echo "extracting boost done!"
     echo "installing boost, can take a while..."
     ./b2 install | pv -l | wc -l
     echo "installing boost done!"
-
+    ls -al $BOOST_ROOT
     echo "boost compilation finished!"
 fi
