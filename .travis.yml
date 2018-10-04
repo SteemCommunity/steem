@@ -12,7 +12,21 @@ script:
 - sh ciscripts/installboost.sh
 - sh ciscripts/compiletest.sh
 
+jobs:
+  include:
+  - stage: prepare cache
+    script:
+      - sh ciscripts/installboost.sh
+      - sh ciscripts/compiletest.sh
+  - stage: test
+    script: ls -al .
+  - stage: test
+    script: ls -al build
+  - stage: test
+    script: ls -al build/*
+
 cache:
   directories:
   - $HOME/opt/boost_1_60_0
   - boost_1_60_0
+  - build
