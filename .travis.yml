@@ -10,13 +10,17 @@ env:
 
 addons:
   apt:
+    sources:
+    - sourceline: "ppa:ubuntu-toolchain-r/test"
     packages:
       - pv
       - make
       - autoconf
       - automake
       - cmake
+      - gcc-4.9
       - g++-4.9
+      - cpp-4.9
       - git
       - libbz2-dev
       - libsnappy-dev
