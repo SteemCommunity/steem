@@ -57,3 +57,4 @@ cache:
   directories:
   - build
   - .mtime_cache
+  - ~/.ccache

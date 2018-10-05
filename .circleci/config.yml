@@ -21,3 +21,4 @@ jobs:
         paths:
         - build
         - .mtime_cache
+        - ~/.ccache
