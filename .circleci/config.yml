@@ -19,7 +19,7 @@ jobs:
           docker run steem tar Ccf $(dirname /usr/local/src/steemtmp/build) - $(basename /usr/local/src/steemtmp/build) | tar Cxf $HOME/project -
           docker run steem tar Ccf $(dirname /usr/local/src/steemtmp/.mtime_cache) - $(basename /usr/local/src/steemtmp/.mtime_cache) | tar Cxf $HOME/project -
           docker run steem tar Ccf $(dirname /usr/local/src/steemtmp/.ccache) - $(basename /usr/local/src/steemtmp/.ccache) | tar Cxf $HOME/project -
-          docker run steem tar Ccf $(dirname /usr/local/src/steem/coverage.info) - $(basename /usr/local/src/steemtmp/coverage.info) | tar Cxf $HOME/project -
+          docker run steem tar Ccf $(dirname /usr/local/src/steemtmp/coverage.info) - $(basename /usr/local/src/steemtmp/coverage.info) | tar Cxf $HOME/project -
           wget -O - https://codecov.io/bash | bash || echo "Codecov did not collect coverage reports"
         no_output_timeout: 30m
     - save_cache:
