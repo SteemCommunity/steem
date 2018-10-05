@@ -54,7 +54,7 @@ RUN cd /usr/local/src/steem && git submodule update --init --recursive && sh cis
     cd /usr/local/src/steem/build && \
     ./tests/chain_test && \
     ./tests/plugin_test && \
-    sh ciscripts/collectcoverage.sh && \
+    sh ../ciscripts/collectcoverage.sh && \
     ./programs/util/test_fixed_string && \
     /usr/local/src/steem && \
     programs/build_helpers/get_config_check.sh && \
