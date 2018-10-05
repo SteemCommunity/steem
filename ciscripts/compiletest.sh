@@ -23,6 +23,6 @@ cmake -DCMAKE_BUILD_TYPE=Debug -DENABLE_COVERAGE_TESTING=ON \
 
 free -h
 
-make -j1 steemd chain_test plugin_test
+make -j2 steemd chain_test plugin_test
 
 free -h

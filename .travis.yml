@@ -44,12 +44,6 @@ jobs:
   - stage: prepare cache
     script:
       - sh ciscripts/compiletest.sh
-  - stage: test
-    script: ls -al .
-  - stage: test
-    script: ls -al build
-  - stage: test
-    script: ls -al build/*
   - stage: coverage
     script: sh ciscripts/collectcoverage.sh
 
