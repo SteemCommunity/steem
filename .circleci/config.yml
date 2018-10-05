@@ -13,7 +13,7 @@ jobs:
         - source-v2-
     - run:
         name: Compile cache
-        command: docker build ciscripts
+        command: docker build -f Dockerfile_ci .
         no_output_timeout: 30m
     - save_cache:
         key: source-v2-{{ .Branch }}-{{ .Revision }}

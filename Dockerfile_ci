@@ -48,6 +48,6 @@ RUN \
     pip3 install gcovr && \
     gem install mtime_cache
 
-ADD .. /usr/local/src/steem
+ADD . /usr/local/src/steem
 
 RUN cd /usr/local/src/steem && git submodule update --init --recursive && sh ciscripts/compiletest.sh
