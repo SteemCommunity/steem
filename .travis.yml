@@ -46,7 +46,7 @@ jobs:
   - stage: prepare cache
     script:
       - |
-        if timeout 1800 sh ciscripts/compiletest.sh ; then sh ciscripts/collectcoverage.sh && wget -O - https://codecov.io/bash | bash -s -X gcov || echo "Codecov did not collect coverage reports" ; fi
+        if timeout 1800 sh ciscripts/compiletest.sh ; then sh ciscripts/collectcoverage.sh && {wget -O - https://codecov.io/bash | bash } > /dev/null || echo "Codecov did not collect coverage reports" ; fi
         true
 
 cache:
