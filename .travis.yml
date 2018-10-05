@@ -38,7 +38,6 @@ addons:
 
 before_install:
   - gem install mtime_cache
-  - mtime_cache **/*.{%{cpp}} -c .mtime_cache/cache.json
 
 jobs:
   include:

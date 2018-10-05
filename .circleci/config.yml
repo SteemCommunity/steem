@@ -5,6 +5,17 @@ jobs:
     - image: reggaemuffin/steem-baseimage:latest
     steps:
     - checkout
+    - restore_cache:
+        keys:
+        - source-v1-{{ .Branch }}-{{ .Revision }}
+        - source-v1-{{ .Branch }}-
+        - source-v1-
     - run:
         name: Compile cache
         command: sh ciscripts/compiletest.sh
+    - save_cache:
+        key: source-v1-{{ .Branch }}-{{ .Revision }}
+        paths:
+        - build
+        - .mtime_cache
+        
