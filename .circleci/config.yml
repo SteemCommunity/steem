@@ -16,9 +16,9 @@ jobs:
         name: Compile cache
         command: |
           docker build -f Dockerfile_ci --build-arg BUILD_STEP=8 -t=steem .
-          docker run -v $WORKSPACE:/var/origin steem cp -r /usr/local/src/steem/build /var/origin
-          docker run -v $WORKSPACE:/var/origin steem cp -r /usr/local/src/steem/.mtime_cache /var/origin
-          docker run -v $WORKSPACE:/var/origin steem cp -r ~/.ccache /var/origin
+          docker run -v $HOME/project:/var/origin steem cp -r /usr/local/src/steem/build /var/origin
+          docker run -v $HOME/project:/var/origin steem cp -r /usr/local/src/steem/.mtime_cache /var/origin
+          docker run -v $HOME/project:/var/origin steem cp -r ~/.ccache /var/origin
         no_output_timeout: 30m
     - save_cache:
         key: source-v2-{{ .Branch }}-{{ .Revision }}
@@ -120,7 +120,10 @@ jobs:
         - source-v2-
     - run:
         name: Compile cache
-        command: docker build -f Dockerfile_ci --build-arg BUILD_STEP=6 .
+        command: |
+          docker build -f Dockerfile_ci --build-arg BUILD_STEP=6 .
+          docker run -v $HOME/project:/var/origin steem cp /usr/local/src/steem/coverage.info /var/origin
+          wget -O - https://codecov.io/bash | bash || echo "Codecov did not collect coverage reports"
         no_output_timeout: 30m
 
 workflows:

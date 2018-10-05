@@ -11,5 +11,3 @@ lcov --remove coverage.info 'libraries/net/*' --output-file coverage.info
 lcov --remove coverage.info 'libraries/utilities/*' --output-file coverage.info
 lcov --remove coverage.info 'libraries/vendor/*' --output-file coverage.info
 lcov --remove coverage.info 'programs/*' --output-file coverage.info
-
-wget -O - https://codecov.io/bash | bash || echo "Codecov did not collect coverage reports"
