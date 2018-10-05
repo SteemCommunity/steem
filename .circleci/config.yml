@@ -15,7 +15,7 @@ jobs:
     - run:
         name: Compile cache
         command: |
-          docker build -f Dockerfile_ci --build-arg BUILD_STEP=0 -t=steem .
+          docker build -f Dockerfile_ci --build-arg BUILD_STEP=8 -t=steem .
           docker run -v $WORKSPACE:/var/origin steem cp -r /usr/local/src/steem/build /var/origin
           docker run -v $WORKSPACE:/var/origin steem cp -r /usr/local/src/steem/.mtime_cache /var/origin
           docker run -v $WORKSPACE:/var/origin steem cp -r ~/.ccache /var/origin
