@@ -45,7 +45,7 @@ jobs:
     script:
       - |
         if timeout 1800 sh ciscripts/compiletest.sh ; then sh ciscripts/collectcoverage.sh ; fi
-        exit 0
+        true
 
 cache:
   directories:
