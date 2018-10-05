@@ -86,5 +86,7 @@ RUN if [ "$BUILD_STEP" -eq "5" ] ; then \
 
 RUN if [ "$BUILD_STEP" -eq "6" ] ; then \
     cd /usr/local/src/steem && \
+    build/tests/chain_test && \
+    build/tests/plugin_test && \
     sh ciscripts/collectcoverage.sh ; \
     fi
