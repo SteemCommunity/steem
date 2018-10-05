@@ -13,6 +13,7 @@ jobs:
     - run:
         name: Compile cache
         command: sh ciscripts/compiletest.sh
+        timeout: 12000
     - save_cache:
         key: source-v1-{{ .Branch }}-{{ .Revision }}
         paths:
