@@ -55,3 +55,6 @@ cache:
   - build
   - .mtime_cache
   - .ccache
+
+before_cache:
+- rm -rf ./**/*.gcov

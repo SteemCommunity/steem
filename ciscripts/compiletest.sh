@@ -11,7 +11,7 @@ export CC="ccache gcc"
 export CXX="ccache g++"
 export CCACHE_DIR=.ccache
 # Set max cache size so we don't carry old objects for too long
-ccache -M 100M
+ccache -M 250M
 
 export CXXFLAGS="$(CXXFLAGS) --param ggc-min-expand=0 --param ggc-min-heapsize=8192"
 
