@@ -1,8 +1,7 @@
 version: 2
 jobs:
   build:
-    docker:
-    - image: reggaemuffin/steem-baseimage:latest
+    machine: true
     steps:
     - checkout
     - run: git submodule sync
@@ -14,7 +13,7 @@ jobs:
         - source-v1-
     - run:
         name: Compile cache
-        command: sh ciscripts/compiletest.sh
+        command: docker build ciscripts
         no_output_timeout: 30m
     - save_cache:
         key: source-v1-{{ .Branch }}-{{ .Revision }}
