@@ -43,9 +43,9 @@ jobs:
   include:
   - stage: prepare cache
     script:
-      - sh ciscripts/compiletest.sh
-  - stage: coverage
-    script: sh ciscripts/collectcoverage.sh
+      - |
+        timeout 1800 "sh ciscripts/compiletest.sh && sh ciscripts/collectcoverage.sh"
+        exit 0
 
 cache:
   directories:
