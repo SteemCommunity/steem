@@ -16,9 +16,9 @@ jobs:
         name: Compile cache
         command: |
           docker build -f Dockerfile_ci --build-arg BUILD_STEP=8 -t=steem .
-          docker run -v $HOME/project:/var/test steem cp -r /usr/local/src/steem/build /var/test
-          docker run -v $HOME/project:/var/test steem cp -r /usr/local/src/steem/.mtime_cache /var/test
-          docker run -v $HOME/project:/var/test steem cp -r ~/.ccache /var/test
+          docker exec steem tar Ccf $(dirname /usr/local/src/steem/build) - $(basename /usr/local/src/steem/build) | tar Cxf $HOME/project -
+          docker exec steem tar Ccf $(dirname /usr/local/src/steem/.mtime_cache) - $(basename /usr/local/src/steem/.mtime_cache) | tar Cxf $HOME/project -
+          docker exec steem tar Ccf $(dirname /usr/local/src/steem/.ccache) - $(basename /usr/local/src/steem/.ccache) | tar Cxf $HOME/project -
         no_output_timeout: 30m
     - save_cache:
         key: source-v2-{{ .Branch }}-{{ .Revision }}
