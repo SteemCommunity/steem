@@ -5,6 +5,8 @@ jobs:
     - image: reggaemuffin/steem-baseimage:latest
     steps:
     - checkout
+    - run: git submodule sync
+    - run: git submodule update --init --recursive
     - restore_cache:
         keys:
         - source-v1-{{ .Branch }}-{{ .Revision }}
