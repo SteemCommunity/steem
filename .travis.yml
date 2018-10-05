@@ -44,7 +44,7 @@ jobs:
   - stage: prepare cache
     script:
       - |
-        if [ (timeout 1800 sh ciscripts/compiletest.sh) ] ; then sh ciscripts/collectcoverage.sh ; fi
+        if timeout 1800 sh ciscripts/compiletest.sh ; then sh ciscripts/collectcoverage.sh ; fi
         exit 0
 
 cache:
