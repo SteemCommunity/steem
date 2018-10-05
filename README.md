@@ -1,4 +1,8 @@
-# Introducing Steem (beta)
+# Introducing Steem (beta) 
+[![Build Status](https://travis-ci.com/SteemCommunity/steem.svg?branch=master)](https://travis-ci.com/SteemCommunity/steem)
+[![codecov](https://codecov.io/gh/SteemCommunity/steem/branch/master/graph/badge.svg)](https://codecov.io/gh/SteemCommunity/steem)
+[![CircleCI](https://circleci.com/gh/SteemCommunity/steem/tree/master.svg?style=svg&circle-token=1a4596835bd47cb4a67fceace819623e5f36b111)](https://circleci.com/gh/SteemCommunity/steem/tree/master)
+[![CodeFactor](https://www.codefactor.io/repository/github/steemcommunity/steem/badge)](https://www.codefactor.io/repository/github/steemcommunity/steem)
 
 Steem is a Delegated Proof of Stake blockchain that uses a "Proof of Brain" social consensus algorithm for token allocation.
 
