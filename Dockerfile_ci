@@ -56,7 +56,7 @@ RUN cd /usr/local/src/steem && git submodule update --init --recursive && sh cis
     ./tests/plugin_test && \
     sh ../ciscripts/collectcoverage.sh && \
     ./programs/util/test_fixed_string && \
-    /usr/local/src/steem && \
+    cd /usr/local/src/steem && \
     programs/build_helpers/get_config_check.sh && \
     doxygen && \
     PYTHONPATH=programs/build_helpers \
