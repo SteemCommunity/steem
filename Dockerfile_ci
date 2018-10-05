@@ -2,6 +2,9 @@ FROM reggaemuffin/steem-baseimage:latest
 
 ENV LANG=en_US.UTF-8
 
+ARG BUILD_STEP
+ENV BUILD_STEP ${BUILD_STEP}
+
 RUN \
     apt-get update && \
     apt-get install -y \
