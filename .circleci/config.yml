@@ -14,14 +14,18 @@ jobs:
         - source-v2-
     - run:
         name: Compile cache
-        command: docker build -f Dockerfile_ci --build-arg BUILD_STEP=0 .
+        command: |
+          docker build -f Dockerfile_ci --build-arg BUILD_STEP=0 -t=steem .
+          docker run -v $WORKSPACE:/var/origin steem cp -r /usr/local/src/steem/build /var/origin
+          docker run -v $WORKSPACE:/var/origin steem cp -r /usr/local/src/steem/.mtime_cache /var/origin
+          docker run -v $WORKSPACE:/var/origin steem cp -r ~/.ccache /var/origin
         no_output_timeout: 30m
     - save_cache:
         key: source-v2-{{ .Branch }}-{{ .Revision }}
         paths:
         - build
         - .mtime_cache
-        - ~/.ccache
+        - .ccache
 
   chain_test:
     machine: true
