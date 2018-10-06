@@ -1,0 +1,36 @@
+version: 2
+
+jobs:
+  complete:
+    machine: true
+    steps:
+    - checkout
+    - run: git submodule sync
+    - run: git submodule update --init --recursive
+    - restore_cache:
+        keys:
+        - complete-v2-{{ .Branch }}-{{ .Revision }}
+        - complete-v2-{{ .Branch }}-
+        - complete-v2-
+    - run:
+        name: Compile cache
+        command: |
+          docker build -f Dockerfile_ci -t=steem .
+          docker run steem tar Ccf $(dirname /usr/local/src/steemtmp/build) - $(basename /usr/local/src/steemtmp/build) | tar Cxf $HOME/project -
+          docker run steem tar Ccf $(dirname /usr/local/src/steemtmp/.mtime_cache) - $(basename /usr/local/src/steemtmp/.mtime_cache) | tar Cxf $HOME/project -
+          docker run steem tar Ccf $(dirname /usr/local/src/steemtmp/.ccache) - $(basename /usr/local/src/steemtmp/.ccache) | tar Cxf $HOME/project -
+          docker run steem tar Ccf $(dirname /usr/local/src/steemtmp/coverage.info) - $(basename /usr/local/src/steemtmp/coverage.info) | tar Cxf $HOME/project -
+          wget -O - https://codecov.io/bash | bash || echo "Codecov did not collect coverage reports"
+        no_output_timeout: 30m
+    - save_cache:
+        key: complete-v2-{{ .Branch }}-{{ .Revision }}
+        paths:
+        - build
+        - .mtime_cache
+        - .ccache
+
+workflows:
+  version: 2
+  build-test-and-deploy:
+    jobs:
+    - complete
