@@ -1,6 +1,8 @@
 codecov:
   notify:
-    require_ci_to_pass: yes
+    require_ci_to_pass: false
+    after_n_builds: 1  # send notifications after the first upload
+    wait_for_ci: false
 
 coverage:
   precision: 2
