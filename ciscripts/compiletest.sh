@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-mtime_cache **/*.{%{cpp}} -c .mtime_cache/cache.json
+mtime_cache "**/*.{%{cpp}}" -c .mtime_cache/cache.json
 
 export CC="ccache gcc"
 export CXX="ccache g++"
