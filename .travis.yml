@@ -57,5 +57,6 @@ cache:
   - .ccache
 
 before_cache:
-- du -hs build .mtime_cache .ccache | sort -hr
+- du -hs build/* | sort -nr | head
+- find build -type f -ls | sort -k 7 -r -n | head -5
 - rm -rf ./**/*.gcov
