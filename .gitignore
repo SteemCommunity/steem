@@ -51,4 +51,4 @@ witness_node_data_dir
 
 \.idea/
 
-cmake-build-debug/
+cmake-build-*/
