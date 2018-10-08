@@ -19,15 +19,9 @@ class witness_api_impl
 };
 
 #pragma message( "TODO: Bandwidth api can be removed later" )
-// TODO START
 DEFINE_API_IMPL( witness_api_impl, get_account_bandwidth )
 {
    get_account_bandwidth_return result;
-
-#pragma message( "TODO: Commented out bandwith to be removed" )
-/*   auto band = _db.find< witness::account_bandwidth_object, witness::by_account_bandwidth_type >( boost::make_tuple( args.account, args.type ) );
-   if( band != nullptr )
-      result.bandwidth = *band;*/
    account_bandwidth_object a;
    a.id = 1;
    a.account = args.account;
@@ -39,7 +33,7 @@ DEFINE_API_IMPL( witness_api_impl, get_account_bandwidth )
 
    return result;
 }
-// TODO END
+
 
 #pragma message( "TODO: Reserve Ratio api can be removed later" )
 DEFINE_API_IMPL( witness_api_impl, get_reserve_ratio )

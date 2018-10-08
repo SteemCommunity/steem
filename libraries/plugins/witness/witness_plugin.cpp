@@ -541,9 +541,6 @@ void witness_plugin::plugin_initialize(const boost::program_options::variables_m
    my->_post_apply_operation_conn = my->_db.add_pre_apply_operation_handler(
       [&]( const chain::operation_notification& note ){ my->on_post_apply_operation( note ); }, *this, 0);
 
-   //add_plugin_index< account_bandwidth_index >( my->_db );
-   add_plugin_index< reserve_ratio_index     >( my->_db );
-
    if( my->_witnesses.size() && my->_private_keys.size() )
       my->_chain_plugin.set_write_lock_hold_time( -1 );
 } FC_LOG_AND_RETHROW() }
