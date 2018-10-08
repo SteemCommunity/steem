@@ -12,6 +12,7 @@
 #include <steem/plugins/webserver/webserver_plugin.hpp>
 #include <steem/plugins/witness/witness_plugin.hpp>
 
+#include <steem/plugins/witness_api/witness_api_plugin.hpp>
 #include <steem/plugins/condenser_api/condenser_api_plugin.hpp>
 
 #include <fc/crypto/digest.hpp>
@@ -868,6 +869,7 @@ json_rpc_database_fixture::json_rpc_database_fixture()
    appbase::app().register_plugin< steem::plugins::account_history::account_history_plugin >();
    db_plugin = &appbase::app().register_plugin< steem::plugins::debug_node::debug_node_plugin >();
    appbase::app().register_plugin< steem::plugins::witness::witness_plugin >();
+   appbase::app().register_plugin< steem::plugins::witness::witness_api_plugin >();
    rpc_plugin = &appbase::app().register_plugin< steem::plugins::json_rpc::json_rpc_plugin >();
    appbase::app().register_plugin< steem::plugins::block_api::block_api_plugin >();
    appbase::app().register_plugin< steem::plugins::database_api::database_api_plugin >();
@@ -878,6 +880,7 @@ json_rpc_database_fixture::json_rpc_database_fixture()
       steem::plugins::account_history::account_history_plugin,
       steem::plugins::debug_node::debug_node_plugin,
       steem::plugins::json_rpc::json_rpc_plugin,
+      steem::plugins::witness::witness_api_plugin,
       steem::plugins::block_api::block_api_plugin,
       steem::plugins::database_api::database_api_plugin,
       steem::plugins::condenser_api::condenser_api_plugin
@@ -1017,6 +1020,8 @@ fc::variant json_rpc_database_fixture::make_request( std::string& request, int64
    fc::variant answer = get_answer( request );
    BOOST_REQUIRE( answer.is_object() );
    fc::optional< fc::variant > id;
+
+   ilog( "RPC response is ${o}", ( "o", answer ));
 
    try
    {

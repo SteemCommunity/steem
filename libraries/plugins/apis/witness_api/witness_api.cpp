@@ -28,6 +28,14 @@ DEFINE_API_IMPL( witness_api_impl, get_account_bandwidth )
 /*   auto band = _db.find< witness::account_bandwidth_object, witness::by_account_bandwidth_type >( boost::make_tuple( args.account, args.type ) );
    if( band != nullptr )
       result.bandwidth = *band;*/
+   account_bandwidth_object a;
+   a.id = 1;
+   a.account = args.account;
+   a.type = args.type;
+   a.average_bandwidth = 0;
+   a.lifetime_bandwidth = 0;
+   a.last_bandwidth_update = STEEM_GENESIS_TIME;
+   result.bandwidth = a;
 
    return result;
 }
