@@ -7,6 +7,8 @@ namespace steem { namespace plugins { namespace witness {
 
 using steem::plugins::block_data_export::exportable_block_data;
 
+#pragma message( "TODO: Bandwidth object definition can be removed later" )
+// TODO START
 struct exp_bandwidth_update_object
 {
    exp_bandwidth_update_object();
@@ -19,6 +21,7 @@ struct exp_bandwidth_update_object
    time_point_sec    last_bandwidth_update;
    uint32_t          tx_size = 0;
 };
+// TODO END
 
 struct exp_reserve_ratio_object
 {

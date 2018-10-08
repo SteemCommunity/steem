@@ -20,6 +20,8 @@ enum witness_plugin_object_type
    reserve_ratio_object_type     = ( STEEM_WITNESS_SPACE_ID << 8 ) + 2,
 };
 
+#pragma message( "TODO: Bandwidth index can be removed later" )
+// TODO START
 enum bandwidth_type
 {
    post,    ///< Rate limiting posting reward eligibility over time
@@ -48,6 +50,7 @@ class account_bandwidth_object : public object< account_bandwidth_object_type, a
 };
 
 typedef oid< account_bandwidth_object > account_bandwidth_id_type;
+// TODO END
 
 class reserve_ratio_object : public object< reserve_ratio_object_type, reserve_ratio_object >
 {
@@ -94,6 +97,9 @@ class reserve_ratio_object : public object< reserve_ratio_object_type, reserve_r
 
 typedef oid< reserve_ratio_object > reserve_ratio_id_type;
 
+#pragma message( "TODO: Bandwidth container can be removed later" )
+// TODO START
+
 struct by_account_bandwidth_type;
 
 typedef multi_index_container <
@@ -111,6 +117,8 @@ typedef multi_index_container <
    allocator< account_bandwidth_object >
 > account_bandwidth_index;
 
+// TODO END
+
 struct by_account;
 
 typedef multi_index_container <
@@ -126,9 +134,13 @@ typedef multi_index_container <
 
 FC_REFLECT_ENUM( steem::plugins::witness::bandwidth_type, (post)(forum)(market) )
 
+#pragma message( "TODO: Bandwidth index can be removed later" )
+// TODO START
 FC_REFLECT( steem::plugins::witness::account_bandwidth_object,
             (id)(account)(type)(average_bandwidth)(lifetime_bandwidth)(last_bandwidth_update) )
 CHAINBASE_SET_INDEX_TYPE( steem::plugins::witness::account_bandwidth_object, steem::plugins::witness::account_bandwidth_index )
+// TODO END
+
 
 FC_REFLECT( steem::plugins::witness::reserve_ratio_object,
             (id)(average_block_size)(current_reserve_ratio)(max_virtual_bandwidth) )

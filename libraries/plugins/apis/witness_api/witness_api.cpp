@@ -18,6 +18,8 @@ class witness_api_impl
       chain::database& _db;
 };
 
+#pragma message( "TODO: Bandwidth api can be removed later" )
+// TODO START
 DEFINE_API_IMPL( witness_api_impl, get_account_bandwidth )
 {
    get_account_bandwidth_return result;
@@ -28,6 +30,7 @@ DEFINE_API_IMPL( witness_api_impl, get_account_bandwidth )
 
    return result;
 }
+// TODO END
 
 DEFINE_API_IMPL( witness_api_impl, get_reserve_ratio )
 {

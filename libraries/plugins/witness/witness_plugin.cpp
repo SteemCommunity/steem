@@ -61,6 +61,8 @@ exp_reserve_ratio_object::exp_reserve_ratio_object( const reserve_ratio_object& 
    max_virtual_bandwidth( rr.max_virtual_bandwidth ),
    block_size( bsize ) {}
 
+#pragma message( "TODO: Bandwidth object can be removed later" )
+// TODO START
 exp_bandwidth_update_object::exp_bandwidth_update_object() {}
 exp_bandwidth_update_object::exp_bandwidth_update_object( const account_bandwidth_object& bwo, uint32_t tsize ) :
    account( bwo.account ),
@@ -69,6 +71,7 @@ exp_bandwidth_update_object::exp_bandwidth_update_object( const account_bandwidt
    lifetime_bandwidth( bwo.lifetime_bandwidth ),
    last_bandwidth_update( bwo.last_bandwidth_update ),
    tx_size( tsize ) {}
+// TODO END
 
 exp_witness_data_object::exp_witness_data_object() {}
 exp_witness_data_object::~exp_witness_data_object() {}

@@ -15,6 +15,8 @@ namespace detail
    class witness_api_impl;
 }
 
+#pragma message( "TODO: Bandwidth index can be removed later" )
+// TODO START
 struct get_account_bandwidth_args
 {
    protocol::account_name_type   account;
@@ -27,6 +29,8 @@ struct get_account_bandwidth_return
 {
    optional< api_account_bandwidth_object > bandwidth;
 };
+
+// TODO END
 
 typedef json_rpc::void_type get_reserve_ratio_args;
 typedef reserve_ratio_object get_reserve_ratio_return;
@@ -48,8 +52,11 @@ class witness_api
 
 } } } // steem::plugins::witness
 
+#pragma message( "TODO: Bandwidth index can be removed later" )
+// TODO START
 FC_REFLECT( steem::plugins::witness::get_account_bandwidth_args,
             (account)(type) )
+// TODO END
 
 FC_REFLECT( steem::plugins::witness::get_account_bandwidth_return,
             (bandwidth) )
