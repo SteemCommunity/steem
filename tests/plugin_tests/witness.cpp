@@ -43,7 +43,6 @@ BOOST_FIXTURE_TEST_SUITE( witness, json_rpc_database_fixture )
          BOOST_REQUIRE( result[ "type" ].as_string() == "forum" );
          BOOST_REQUIRE( result[ "lifetime_bandwidth" ].as_int64() == 0 );
          BOOST_REQUIRE( result[ "average_bandwidth" ].as_int64() == 0 );
-
       }
       FC_LOG_AND_RETHROW()
    }
@@ -77,7 +76,6 @@ BOOST_FIXTURE_TEST_SUITE( witness, json_rpc_database_fixture )
          BOOST_REQUIRE( result[ "type" ].as_string() == "forum" );
          BOOST_REQUIRE( result[ "lifetime_bandwidth" ].as_int64() == 0 );
          BOOST_REQUIRE( result[ "average_bandwidth" ].as_int64() == 0 );
-
       }
       FC_LOG_AND_RETHROW()
    }
@@ -109,7 +107,6 @@ BOOST_FIXTURE_TEST_SUITE( witness, json_rpc_database_fixture )
          BOOST_REQUIRE( result[ "current_reserve_ratio" ].as_int64() == 200000000 );
          BOOST_REQUIRE( result[ "average_block_size" ].as_int64() == 0 );
          BOOST_REQUIRE( result[ "max_virtual_bandwidth" ].as_int64() == 0 );
-
       }
       FC_LOG_AND_RETHROW()
    }
@@ -142,7 +139,6 @@ BOOST_FIXTURE_TEST_SUITE( witness, json_rpc_database_fixture )
          BOOST_REQUIRE( result[ "current_reserve_ratio" ].as_int64() == 200000000 );
          BOOST_REQUIRE( result[ "average_block_size" ].as_int64() == 0 );
          BOOST_REQUIRE( result[ "max_virtual_bandwidth" ].as_int64() == 0 );
-
       }
       FC_LOG_AND_RETHROW()
    }
