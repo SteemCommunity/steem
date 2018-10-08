@@ -24,14 +24,16 @@ DEFINE_API_IMPL( witness_api_impl, get_account_bandwidth )
 {
    get_account_bandwidth_return result;
 
-   auto band = _db.find< witness::account_bandwidth_object, witness::by_account_bandwidth_type >( boost::make_tuple( args.account, args.type ) );
+#pragma message( "TODO: Commented out bandwith to be removed" )
+/*   auto band = _db.find< witness::account_bandwidth_object, witness::by_account_bandwidth_type >( boost::make_tuple( args.account, args.type ) );
    if( band != nullptr )
-      result.bandwidth = *band;
+      result.bandwidth = *band;*/
 
    return result;
 }
 // TODO END
 
+#pragma message( "TODO: Reserve Ratio api can be removed later" )
 DEFINE_API_IMPL( witness_api_impl, get_reserve_ratio )
 {
    return _db.get( reserve_ratio_id_type() );

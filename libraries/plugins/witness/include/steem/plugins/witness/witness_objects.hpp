@@ -96,7 +96,8 @@ class reserve_ratio_object : public object< reserve_ratio_object_type, reserve_r
 };
 
 typedef oid< reserve_ratio_object > reserve_ratio_id_type;
-
+#pragma message( "TODO: Commented out bandwith to be removed" )
+/*
 #pragma message( "TODO: Bandwidth container can be removed later" )
 // TODO START
 
@@ -118,6 +119,7 @@ typedef multi_index_container <
 > account_bandwidth_index;
 
 // TODO END
+*/
 
 struct by_account;
 
@@ -134,12 +136,16 @@ typedef multi_index_container <
 
 FC_REFLECT_ENUM( steem::plugins::witness::bandwidth_type, (post)(forum)(market) )
 
+
 #pragma message( "TODO: Bandwidth index can be removed later" )
 // TODO START
 FC_REFLECT( steem::plugins::witness::account_bandwidth_object,
             (id)(account)(type)(average_bandwidth)(lifetime_bandwidth)(last_bandwidth_update) )
+#pragma message( "TODO: Commented out bandwith to be removed" )
+/*
 CHAINBASE_SET_INDEX_TYPE( steem::plugins::witness::account_bandwidth_object, steem::plugins::witness::account_bandwidth_index )
 // TODO END
+*/
 
 
 FC_REFLECT( steem::plugins::witness::reserve_ratio_object,

@@ -54,6 +54,8 @@ void new_chain_banner( const chain::database& db )
    return;
 }
 
+#pragma message( "TODO: Commented out bandwith to be removed" )
+
 exp_reserve_ratio_object::exp_reserve_ratio_object() {}
 exp_reserve_ratio_object::exp_reserve_ratio_object( const reserve_ratio_object& rr, int32_t bsize ) :
    average_block_size( rr.average_block_size ),
@@ -72,6 +74,7 @@ exp_bandwidth_update_object::exp_bandwidth_update_object( const account_bandwidt
    last_bandwidth_update( bwo.last_bandwidth_update ),
    tx_size( tsize ) {}
 // TODO END
+
 
 exp_witness_data_object::exp_witness_data_object() {}
 exp_witness_data_object::~exp_witness_data_object() {}
