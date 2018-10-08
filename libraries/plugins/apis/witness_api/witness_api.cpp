@@ -44,7 +44,12 @@ DEFINE_API_IMPL( witness_api_impl, get_account_bandwidth )
 #pragma message( "TODO: Reserve Ratio api can be removed later" )
 DEFINE_API_IMPL( witness_api_impl, get_reserve_ratio )
 {
-   return _db.get( reserve_ratio_id_type() );
+   reserve_ratio_object r;
+   r.id = 0;
+   r.current_reserve_ratio = 200000000;
+   r.average_block_size = 0;
+   r.max_virtual_bandwidth = 0;
+   return r;
 }
 
 } // detail

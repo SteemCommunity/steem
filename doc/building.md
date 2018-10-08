@@ -231,6 +231,68 @@ e.g.:
 
 This will only build `steemd`.
 
+## Building on Windows with CSL and CLion
+
+To install WSL and set it up for CLion, follow this guide:
+https://www.jetbrains.com/help/clion/how-to-use-wsl-development-environment-in-clion.html
+
+Select Ubuntu 16.04 as the subsystem of choice. Then open a console inside ubuntu and install dependencies:
+
+For Ubuntu 16.04 users, after installing the right packages with `apt` Steem
+will build out of the box without further effort:
+
+    # Required packages
+    sudo apt-get install -y \
+        autoconf \
+        automake \
+        cmake \
+        g++ \
+        git \
+        libbz2-dev \
+        libsnappy-dev \
+        libssl-dev \
+        libtool \
+        make \
+        pkg-config \
+        python3 \
+        python3-jinja2
+
+    # Boost packages (also required)
+    sudo apt-get install -y \
+        libboost-chrono-dev \
+        libboost-context-dev \
+        libboost-coroutine-dev \
+        libboost-date-time-dev \
+        libboost-filesystem-dev \
+        libboost-iostreams-dev \
+        libboost-locale-dev \
+        libboost-program-options-dev \
+        libboost-serialization-dev \
+        libboost-signals-dev \
+        libboost-system-dev \
+        libboost-test-dev \
+        libboost-thread-dev
+
+    # Optional packages (not required, but will make a nicer experience)
+    sudo apt-get install -y \
+        doxygen \
+        libncurses5-dev \
+        libreadline-dev \
+        perl
+
+In Clion under `File | Settings | Build, Execution, Deployment | CMake` create a new profile 
+and give it the following CMake options:
+
+    -DENABLE_COVERAGE_TESTING=ON
+    -DBUILD_STEEM_TESTNET=ON
+    -DLOW_MEMORY_NODE=OFF
+    -DCLEAR_VOTES=ON
+    -DSKIP_BY_TX_ID=ON
+    -DCHAINBASE_CHECK_LOCKING=OFF
+
+Set `Build Type` to `Debug` and `Generation Path` to `build`. 
+ 
+
 ## Building on Other Platforms
 
 - Windows build instructions do not yet exist.
