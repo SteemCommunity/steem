@@ -91,8 +91,8 @@ namespace detail {
       void on_pre_apply_transaction( const chain::transaction_notification& trx );
       void on_pre_apply_operation( const chain::operation_notification& note );
       void on_post_apply_operation( const chain::operation_notification& note );
-
-//      void update_account_bandwidth( const chain::account_object& a, uint32_t trx_size, const bandwidth_type type );
+      #pragma message( "TODO: Commented out bandwith to be removed" )
+      // void update_account_bandwidth( const chain::account_object& a, uint32_t trx_size, const bandwidth_type type );
 
       void schedule_production_loop();
       block_production_condition::block_production_condition_enum block_production_loop();
@@ -101,6 +101,7 @@ namespace detail {
       bool     _production_enabled              = false;
       uint32_t _required_witness_participation  = 33 * STEEM_1_PERCENT;
       uint32_t _production_skip_flags           = chain::database::skip_nothing;
+      #pragma message( "TODO: Commented out bandwith to be removed" )
       //bool     _skip_enforce_bandwidth          = true;
 
       std::map< steem::protocol::public_key_type, fc::ecc::private_key > _private_keys;
@@ -263,6 +264,7 @@ namespace detail {
 
    void witness_plugin_impl::on_pre_apply_transaction( const chain::transaction_notification& note )
    {
+      #pragma message( "TODO: Commented out bandwith to be removed" )
       /*
       const signed_transaction& trx = note.transaction;
       flat_set< account_name_type > required; vector<authority> other;
@@ -321,6 +323,7 @@ namespace detail {
 
    void witness_plugin_impl::on_post_apply_block( const block_notification& note )
    { try {
+      #pragma message( "TODO: Commented out bandwith to be removed" )
       /*
       const signed_block& b = note.block;
       int64_t max_block_size = _db.get_dynamic_global_properties().maximum_block_size;
@@ -407,6 +410,7 @@ namespace detail {
 
    } FC_LOG_AND_RETHROW() }
    #pragma message( "Remove FC_LOG_AND_RETHROW here before appbase release. It exists to help debug a rare lock exception" )
+#pragma message( "TODO: Commented out bandwith to be removed" )
 /*
    void witness_plugin_impl::update_account_bandwidth( const chain::account_object& a, uint32_t trx_size, const bandwidth_type type )
    {
@@ -686,6 +690,7 @@ void witness_plugin::plugin_initialize(const boost::program_options::variables_m
 
    if( my->_witnesses.size() > 0 )
    {
+#pragma message( "TODO: Deprecate bandwidth config" )
       // It is safe to access rc plugin here because of APPBASE_REQUIRES_PLUGIN
       /*
       FC_ASSERT( my->_skip_enforce_bandwidth,
