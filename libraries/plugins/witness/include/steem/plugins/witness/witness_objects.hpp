@@ -32,7 +32,6 @@ enum bandwidth_type
 class account_bandwidth_object : public object< account_bandwidth_object_type, account_bandwidth_object >
 {
    public:
-
    account_bandwidth_object() {}
 
       id_type           id;
@@ -47,7 +46,6 @@ class account_bandwidth_object : public object< account_bandwidth_object_type, a
 class reserve_ratio_object : public object< reserve_ratio_object_type, reserve_ratio_object >
 {
    public:
-
    reserve_ratio_object() {}
 
       id_type           id;
