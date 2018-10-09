@@ -613,7 +613,7 @@ void p2p_plugin::plugin_initialize(const boost::program_options::variables_map& 
          catch( const fc::exception& e )
          {
             wlog( "caught exception ${e} while adding seed node ${endpoint}",
-               ("e", e.to_detail_string())("endpoint", endpoint_string) );
+               ("e", e.to_string())("endpoint", endpoint_string) );
          }
       }
    }

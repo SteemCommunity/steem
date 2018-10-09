@@ -787,6 +787,7 @@ namespace detail
       get_dynamic_global_properties_return gpo = _database_api->get_dynamic_global_properties( {} );
       if( _witness_api )
       {
+         #pragma message( "TODO: Remove Reserve Ratio call once deprecated" )
          auto reserve_ratio = _witness_api->get_reserve_ratio( {} );
          gpo.average_block_size = reserve_ratio.average_block_size;
          gpo.current_reserve_ratio = reserve_ratio.current_reserve_ratio;

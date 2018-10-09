@@ -18,20 +18,31 @@ class witness_api_impl
       chain::database& _db;
 };
 
+#pragma message( "TODO: Bandwidth api can be removed later" )
 DEFINE_API_IMPL( witness_api_impl, get_account_bandwidth )
 {
    get_account_bandwidth_return result;
-
-   auto band = _db.find< witness::account_bandwidth_object, witness::by_account_bandwidth_type >( boost::make_tuple( args.account, args.type ) );
-   if( band != nullptr )
-      result.bandwidth = *band;
+   account_bandwidth_object a;
+   a.id = 1;
+   a.account = args.account;
+   a.type = args.type;
+   a.average_bandwidth = 0;
+   a.lifetime_bandwidth = 0;
+   a.last_bandwidth_update = STEEM_GENESIS_TIME;
+   result.bandwidth = a;
 
    return result;
 }
 
+#pragma message( "TODO: Reserve Ratio api can be removed later" )
 DEFINE_API_IMPL( witness_api_impl, get_reserve_ratio )
 {
-   return _db.get( reserve_ratio_id_type() );
+   reserve_ratio_object r;
+   r.id = 0;
+   r.current_reserve_ratio = 200000000;
+   r.average_block_size = 0;
+   r.max_virtual_bandwidth = 0;
+   return r;
 }
 
 } // detail

@@ -142,6 +142,7 @@
 #define STEEM_MAX_COMMENT_DEPTH               0xffff // 64k
 #define STEEM_SOFT_MAX_COMMENT_DEPTH          0xff // 255
 
+#pragma message( "TODO: Remove Reserve Ratio call once deprecated" )
 #define STEEM_MAX_RESERVE_RATIO               (20000)
 
 #define STEEM_CREATE_ACCOUNT_WITH_STEEM_MODIFIER 30

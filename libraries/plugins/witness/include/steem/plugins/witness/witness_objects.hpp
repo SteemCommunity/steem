@@ -20,6 +20,8 @@ enum witness_plugin_object_type
    reserve_ratio_object_type     = ( STEEM_WITNESS_SPACE_ID << 8 ) + 2,
 };
 
+#pragma message( "TODO: Bandwidth index can be removed later" )
+// TODO START
 enum bandwidth_type
 {
    post,    ///< Rate limiting posting reward eligibility over time
@@ -30,13 +32,7 @@ enum bandwidth_type
 class account_bandwidth_object : public object< account_bandwidth_object_type, account_bandwidth_object >
 {
    public:
-      template< typename Constructor, typename Allocator >
-      account_bandwidth_object( Constructor&& c, allocator< Allocator > a )
-      {
-         c( *this );
-      }
-
-      account_bandwidth_object() {}
+   account_bandwidth_object() {}
 
       id_type           id;
 
@@ -47,18 +43,10 @@ class account_bandwidth_object : public object< account_bandwidth_object_type, a
       time_point_sec    last_bandwidth_update;
 };
 
-typedef oid< account_bandwidth_object > account_bandwidth_id_type;
-
 class reserve_ratio_object : public object< reserve_ratio_object_type, reserve_ratio_object >
 {
    public:
-      template< typename Constructor, typename Allocator >
-      reserve_ratio_object( Constructor&& c, allocator< Allocator > a )
-      {
-         c( *this );
-      }
-
-      reserve_ratio_object() {}
+   reserve_ratio_object() {}
 
       id_type           id;
 
@@ -92,44 +80,18 @@ class reserve_ratio_object : public object< reserve_ratio_object_type, reserve_r
       uint128_t   max_virtual_bandwidth = 0;
 };
 
-typedef oid< reserve_ratio_object > reserve_ratio_id_type;
-
-struct by_account_bandwidth_type;
-
-typedef multi_index_container <
-   account_bandwidth_object,
-   indexed_by <
-      ordered_unique< tag< by_id >,
-         member< account_bandwidth_object, account_bandwidth_id_type, &account_bandwidth_object::id > >,
-      ordered_unique< tag< by_account_bandwidth_type >,
-         composite_key< account_bandwidth_object,
-            member< account_bandwidth_object, account_name_type, &account_bandwidth_object::account >,
-            member< account_bandwidth_object, bandwidth_type, &account_bandwidth_object::type >
-         >
-      >
-   >,
-   allocator< account_bandwidth_object >
-> account_bandwidth_index;
-
 struct by_account;
-
-typedef multi_index_container <
-   reserve_ratio_object,
-   indexed_by <
-      ordered_unique< tag< by_id >,
-         member< reserve_ratio_object, reserve_ratio_id_type, &reserve_ratio_object::id > >
-   >,
-   allocator< reserve_ratio_object >
-> reserve_ratio_index;
 
 } } } // steem::plugins::witness
 
 FC_REFLECT_ENUM( steem::plugins::witness::bandwidth_type, (post)(forum)(market) )
 
+
+#pragma message( "TODO: Bandwidth index can be removed later" )
+// TODO START
 FC_REFLECT( steem::plugins::witness::account_bandwidth_object,
             (id)(account)(type)(average_bandwidth)(lifetime_bandwidth)(last_bandwidth_update) )
-CHAINBASE_SET_INDEX_TYPE( steem::plugins::witness::account_bandwidth_object, steem::plugins::witness::account_bandwidth_index )
 
 FC_REFLECT( steem::plugins::witness::reserve_ratio_object,
             (id)(average_block_size)(current_reserve_ratio)(max_virtual_bandwidth) )
-CHAINBASE_SET_INDEX_TYPE( steem::plugins::witness::reserve_ratio_object, steem::plugins::witness::reserve_ratio_index )
+

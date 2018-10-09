@@ -15,6 +15,8 @@ namespace detail
    class witness_api_impl;
 }
 
+#pragma message( "TODO: Bandwidth api can be removed later" )
+// TODO START
 struct get_account_bandwidth_args
 {
    protocol::account_name_type   account;
@@ -53,3 +55,4 @@ FC_REFLECT( steem::plugins::witness::get_account_bandwidth_args,
 
 FC_REFLECT( steem::plugins::witness::get_account_bandwidth_return,
             (bandwidth) )
+// TODO END

@@ -426,6 +426,7 @@ struct extended_dynamic_global_properties
    uint16_t          sbd_stop_percent = 0;
    uint16_t          sbd_start_percent = 0;
 
+   #pragma message( "TODO: Remove Reserve Ratio call once deprecated" )
    int32_t           average_block_size = 0;
    int64_t           current_reserve_ratio = 1;
    uint128_t         max_virtual_bandwidth = 0;
@@ -1183,6 +1184,7 @@ FC_REFLECT( steem::plugins::condenser_api::api_comment_object,
              (beneficiaries)
           )
 
+#pragma message( "TODO: Remove Reserve Ratio call once deprecated" )
 FC_REFLECT( steem::plugins::condenser_api::extended_dynamic_global_properties,
             (head_block_number)(head_block_id)(time)
             (current_witness)(total_pow)(num_pow_witnesses)
