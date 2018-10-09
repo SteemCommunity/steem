@@ -231,7 +231,7 @@ e.g.:
 
 This will only build `steemd`.
 
-## Building on Windows with CSL and CLion
+## Building on Windows with WSL and CLion
 
 To install WSL and set it up for CLion, follow this guide:
 https://www.jetbrains.com/help/clion/how-to-use-wsl-development-environment-in-clion.html

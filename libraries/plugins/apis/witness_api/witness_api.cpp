@@ -34,7 +34,6 @@ DEFINE_API_IMPL( witness_api_impl, get_account_bandwidth )
    return result;
 }
 
-
 #pragma message( "TODO: Reserve Ratio api can be removed later" )
 DEFINE_API_IMPL( witness_api_impl, get_reserve_ratio )
 {

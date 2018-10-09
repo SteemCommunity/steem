@@ -30,8 +30,6 @@ struct get_account_bandwidth_return
    optional< api_account_bandwidth_object > bandwidth;
 };
 
-
-
 typedef json_rpc::void_type get_reserve_ratio_args;
 typedef reserve_ratio_object get_reserve_ratio_return;
 
@@ -54,7 +52,6 @@ class witness_api
 
 FC_REFLECT( steem::plugins::witness::get_account_bandwidth_args,
             (account)(type) )
-
 
 FC_REFLECT( steem::plugins::witness::get_account_bandwidth_return,
             (bandwidth) )

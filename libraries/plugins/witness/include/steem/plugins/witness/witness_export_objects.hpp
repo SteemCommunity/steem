@@ -7,8 +7,6 @@ namespace steem { namespace plugins { namespace witness {
 
 using steem::plugins::block_data_export::exportable_block_data;
 
-#pragma message( "TODO: Commented out bandwith to be removed" )
-
 #pragma message( "TODO: Bandwidth object definition can be removed later" )
 // TODO START
 struct exp_bandwidth_update_object
@@ -23,7 +21,6 @@ struct exp_bandwidth_update_object
    time_point_sec    last_bandwidth_update;
    uint32_t          tx_size = 0;
 };
-// TODO END
 
 struct exp_reserve_ratio_object
 {
@@ -35,7 +32,7 @@ struct exp_reserve_ratio_object
    uint128_t  max_virtual_bandwidth = 0;
    int32_t    block_size = 0;
 };
-
+// TODO END
 
 class exp_witness_data_object
    : public exportable_block_data
@@ -48,15 +45,16 @@ class exp_witness_data_object
       {
          fc::to_variant( *this, v );
       }
-#pragma message( "TODO: Commented out bandwith to be removed" )
+#pragma message( "TODO: Bandwidth object definition can be removed later" )
       std::vector< exp_bandwidth_update_object >            bandwidth_updates;
+#pragma message( "TODO: Reserve Ratio object definition can be removed later" )
       exp_reserve_ratio_object                              reserve_ratio;
 };
 
 } } }
 
-#pragma message( "TODO: Commented out bandwith to be removed" )
-
+#pragma message( "TODO: Bandwidth object definition can be removed later" )
+// TODO START
 FC_REFLECT( steem::plugins::witness::exp_bandwidth_update_object,
    (account)
    (type)
@@ -73,9 +71,8 @@ FC_REFLECT( steem::plugins::witness::exp_reserve_ratio_object,
    (block_size)
    )
 
-
 FC_REFLECT( steem::plugins::witness::exp_witness_data_object,
    (bandwidth_updates)
    (reserve_ratio)
    )
-
+// TODO END
