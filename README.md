@@ -2,6 +2,7 @@
 [![codecov](https://codecov.io/gh/SteemCommunity/steem/branch/master/graph/badge.svg)](https://codecov.io/gh/SteemCommunity/steem)
 [![CircleCI](https://circleci.com/gh/SteemCommunity/steem/tree/master.svg?style=svg&circle-token=1a4596835bd47cb4a67fceace819623e5f36b111)](https://circleci.com/gh/SteemCommunity/steem/tree/master)
 [![CodeFactor](https://www.codefactor.io/repository/github/steemcommunity/steem/badge)](https://www.codefactor.io/repository/github/steemcommunity/steem)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ecb625a8952e4da08fcb0df5c1f672b4)](https://www.codacy.com/app/reggaemuffin/steem?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=SteemCommunity/steem&amp;utm_campaign=Badge_Grade)
 
 Steem is a Delegated Proof of Stake blockchain that uses a "Proof of Brain" social consensus algorithm for token allocation.
 
