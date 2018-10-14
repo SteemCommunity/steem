@@ -1,4 +1,5 @@
 # Introducing Steem (beta) 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7025c4541afe4d2c803be963c3bf80a9)](https://app.codacy.com/app/marvin_4/steem?utm_source=github.com&utm_medium=referral&utm_content=SteemCommunity/steem&utm_campaign=Badge_Grade_Dashboard)
 [![Build Status](https://travis-ci.com/SteemCommunity/steem.svg?branch=master)](https://travis-ci.com/SteemCommunity/steem)
 [![codecov](https://codecov.io/gh/SteemCommunity/steem/branch/master/graph/badge.svg)](https://codecov.io/gh/SteemCommunity/steem)
 [![CircleCI](https://circleci.com/gh/SteemCommunity/steem/tree/master.svg?style=svg&circle-token=1a4596835bd47cb4a67fceace819623e5f36b111)](https://circleci.com/gh/SteemCommunity/steem/tree/master)
