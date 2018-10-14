@@ -102,7 +102,7 @@ We provide a basic cli wallet for interfacing with `steemd`. The wallet is self 
 # Building
 
 See [doc/building.md](doc/building.md) for detailed build instructions, including
-compile-time options, and specific commands for Linux (Ubuntu LTS) or macOS.
+compile-time options, and specific commands for Linux (Ubuntu LTS), macOS or Windows with WSL and CLion.
 
 # Testing
 
