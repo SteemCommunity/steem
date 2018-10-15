@@ -17,7 +17,14 @@
 // 2020.748973 VESTS == 1.000 STEEM when HF20 occurred on mainnet
 // TODO: What should this value be for testnet?
 #define STEEM_HISTORICAL_ACCOUNT_CREATION_ADJUSTMENT      2020748973
+
+#ifndef IS_TEST_NET
 #define STEEM_HF20_BLOCK_NUM                              26256743
+#endif
+
+// 1.66% is ~2 hours of regen.
+// 2 / ( 24 * 5 ) = 0.01666...
+#define STEEM_RC_MAX_NEGATIVE_PERCENT 166
 
 namespace steem { namespace plugins { namespace rc {
 
@@ -261,7 +268,10 @@ void use_account_rcs(
 
       if( skip.skip_deduct_rc )
          return;
-      rca.rc_manabar.use_mana( rc );
+
+      int64_t min_mana = -1 * ( STEEM_RC_MAX_NEGATIVE_PERCENT * mbparams.max_mana ) / STEEM_100_PERCENT;
+
+      rca.rc_manabar.use_mana( rc, min_mana );
    } );
 }
 
@@ -974,10 +984,13 @@ void rc_plugin::plugin_initialize( const boost::program_options::variables_map& 
       add_plugin_index< rc_account_index >(db);
 
       my->_skip.skip_reject_not_enough_rc = options.at( "rc-skip-reject-not-enough-rc" ).as< bool >();
-      if( options.at( "rc-compute-historical-rc" ).as<bool>() )
+#ifndef IS_TEST_NET
+      if( !options.at( "rc-compute-historical-rc" ).as<bool>() )
       {
          my->_enable_at_block = STEEM_HF20_BLOCK_NUM;
       }
+#endif
+      ilog( "RC's will be computed starting at block ${b}", ("b", my->_enable_at_block) );
    }
    FC_CAPTURE_AND_RETHROW()
 }
